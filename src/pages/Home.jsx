@@ -2,6 +2,7 @@ import { useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import { Island, Sky, Bird, Plane } from '../models';
+import HomeInfo from '../components/HomeInfo';
 
 const Home = () => {
   const [currentStage, setCurrentStage] = useState(1);
@@ -31,9 +32,9 @@ const Home = () => {
   const [planeScale, planePosition] = adjustPlaneForScreenSize();
   return (
     <section className='w-full h-screen relative'>
-      {/* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-            POPUP
-        </div> */}
+      <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
+        {currentStage && <HomeInfo currentStage={currentStage} />}
+      </div>
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? 'cursor-grabbing' : 'cursor-grab'
@@ -48,15 +49,13 @@ const Home = () => {
             groundColor='#000000'
             intensity={0.5}
           />
-                    <Sky
-          isRotating={isRotating}
-          />
+          <Sky isRotating={isRotating} />
           <Bird />
           <Plane
             planePosition={planePosition}
             planeScale={planeScale}
             isRotating={isRotating}
-            rotation={[0,20,0]}
+            rotation={[0, 20, 0]}
           />
 
           <Island
