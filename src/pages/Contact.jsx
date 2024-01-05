@@ -3,11 +3,16 @@ import emailjs from '@emailjs/browser'
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import { Fox } from "../models"
+import useAlert from '../hooks/useAlert';
+import Alert from '../components/Alert';
 const Contact = () => {
   const formRef = useRef(null)
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState('idle')
+
+  const {alert, showAlert, hideAlert} = useAlert();
+  
   const handleChange = (e) => {
     setForm({...form,[e.target.name]: e.target.value})
   };
@@ -30,7 +35,9 @@ const Contact = () => {
       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
     ).then(() => {
       setIsLoading(false);
+      showAlert({text: "Message sent successfully", type:'success'})
       setTimeout(()=> {
+        hideAlert()
         setCurrentAnimation('idle')
         setForm({ name: '', email: '', message: '' })
       }, [1000])
@@ -38,6 +45,8 @@ const Contact = () => {
       //TODO show success message
     }).catch((error) => {
       setIsLoading(false)
+      showAlert({text: "Something went wrong when sending the message", type:'danger'})
+
       setCurrentAnimation('idle')
       console.log(error)
       //TODO show error msg
@@ -45,7 +54,8 @@ const Contact = () => {
   };
   return (
     <section className='relative flex lg:flex-row flex-col max-container'>
-      <div className='flex-1 min-w-[50%] flex flex-col'></div>
+      {alert.show && <Alert {...alert}/>}
+      <div className='flex-1 min-w-[50%] flex flex-col'>
       <h1 className='head-text'>Get In Touch</h1>
       <form
         className='w-full flex flex-col gap-7 mt-14'
@@ -103,6 +113,8 @@ const Contact = () => {
           {isLoading ? 'Sending' : 'Send Message'}
         </button>
       </form>
+      </div>
+
       <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
         <Canvas
         camera={{
