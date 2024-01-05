@@ -1,6 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { Home, About, Contact, Projects } from './pages'
+import { Analytics } from '@vercel/analytics/react';
+
 const App = () => {
   return (
     <main className='bg-slate-300/20 h-full'>
@@ -13,6 +15,7 @@ const App = () => {
           <Route path='/contact' element={<Contact/>} />
         </Routes>
       </Router>
+    <Analytics/>
     </main>
   );
 };
