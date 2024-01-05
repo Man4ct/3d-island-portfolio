@@ -22,18 +22,19 @@ const About = () => {
         </p>
       </div>
       <div className='py-10 flex flex-col'>
-        <h3 className='subhead-text'>My Skills</h3>
+        <h3 className='subhead-text'>Technical Skills</h3>
 
         <div className='mt-16 flex flex-wrap gap-12'>
           {skills.map((skill) => (
-            <div className='block-container h-20 w-20'>
+            <div className='block-container h-20 w-20' key={skill.name}>
               <div className='btn-back rounded-xl' />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
+              <div className='btn-front rounded-xl flex flex-col items-center justify-center'>
                 <img
                   src={skill.imageUrl}
                   alt={skill.name}
                   className='w-1/2 h-1/2 object-contain'
                 />
+                <p className='text-black-500 text-sm mt-2'>{skill.name}</p>
               </div>
             </div>
           ))}
@@ -43,27 +44,31 @@ const About = () => {
       <div className='py-16'>
         <h3 className='subhead-text'>Work Experience</h3>
         <div className='mt-5 flex flex-col gap-3 text-slate-500'>
-          <p>Here's the rundown of my professional career:</p>
+          <p>Here's the rundown of my professional career</p>
         </div>
 
         <div className='mt-12 flex'>
           <VerticalTimeline>
             {experiences.map((experience) => (
               <VerticalTimelineElement
-              key={experience.company_name}
-              date={experience.date}
-              icon={
-                <div className='flex justify-center items-center w-full h-full'>
-                  <img src={experience.icon} alt={experience.company_name} className='w-[60%] h-[60%] object-contain' />
-                </div>
-              }
-              iconStyle={{background: experience.iconBg}}
-              contentStyle={{
-                borderBottom: '8px',
-                borderStyle: 'solid',
-                borderBottomColor: experience.iconBg,
-                boxShadow: 'none'
-              }}
+                key={experience.company_name}
+                date={experience.date}
+                icon={
+                  <div className='flex justify-center items-center w-full h-full'>
+                    <img
+                      src={experience.icon}
+                      alt={experience.company_name}
+                      className='w-[60%] h-[60%] object-contain'
+                    />
+                  </div>
+                }
+                iconStyle={{ background: experience.iconBg }}
+                contentStyle={{
+                  borderBottom: '8px',
+                  borderStyle: 'solid',
+                  borderBottomColor: experience.iconBg,
+                  boxShadow: 'none',
+                }}
               >
                 <div>
                   <h3 className='text-black font-semibold text-xl font-poppins'>
@@ -72,12 +77,17 @@ const About = () => {
                   <p
                     className='text-black-500 font-base font-medium'
                     style={{ margin: 0 }}
-                  >{experience.company_name}</p>
+                  >
+                    {experience.company_name}
+                  </p>
                 </div>
 
                 <ul className='my-5 list-disc ml-5 space-y-2'>
                   {experience.points.map((point, index) => (
-                    <li key={`experience-point-${index}`} className='text-black-500/65 font-normal pl-1 text-sm'>
+                    <li
+                      key={`experience-point-${index}`}
+                      className='text-black-500/65 font-normal pl-1 text-sm'
+                    >
                       {point}
                     </li>
                   ))}
@@ -88,7 +98,7 @@ const About = () => {
         </div>
       </div>
       <hr className='border-slate-200' />
-      <CTA/>
+      <CTA />
     </section>
   );
 };
