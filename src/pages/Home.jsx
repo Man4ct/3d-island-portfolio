@@ -53,6 +53,7 @@ const Home = () => {
           isRotating ? 'cursor-grabbing' : 'cursor-grab'
         }`}
         camera={{ near: 0.1, far: 1000 }}
+        style={{overflowY:'hidden'}}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
@@ -78,7 +79,7 @@ const Home = () => {
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
-          />
+           />
         </Suspense>
       </Canvas>
       <div className='absolute bottom-2 left-2'>
