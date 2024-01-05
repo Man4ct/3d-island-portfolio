@@ -19,9 +19,6 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     e.preventDefault();
     setIsRotating(true);
 
-    // Disable scrolling on touch devices
-    document.body.style.overflow = 'hidden';
-
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     lastX.current = clientX;
   };
