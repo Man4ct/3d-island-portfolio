@@ -26,6 +26,11 @@ import arrow from './arrow.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
+import jobify from './jobify.svg'
+import cashew from './cashew.svg'
+import chatting from './chatting.svg'
+import clothing from './clothing.svg'
+import warmindo from './warmindo.svg'
 
 export {
     css,
@@ -55,5 +60,10 @@ export {
     arrow,
     contact,
     soundon,
-    soundoff
+    soundoff,
+    jobify,
+    cashew,
+    chatting,
+    clothing,
+    warmindo,
 }
