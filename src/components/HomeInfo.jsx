@@ -18,7 +18,7 @@ const renderContent = {
     1: (
       <InfoBox
         title='Welcome Aboard!'
-        text="Hey, I'm Fahmi, ready for a digital journey with you!"
+        text="Hey, I'm Fahmi, A fulltime software engineer and a part-time Content Creator. Let's embark on a journey together!"
       />
     ),
     2: (
